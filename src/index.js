@@ -1,7 +1,7 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import { CurrencyExchange, convert} from './currencyex';
+import { CurrencyExchange, convert, backConvert} from './currencyex';
 
 // Business Logic
 
@@ -18,7 +18,6 @@ function handleFormSubmission(event) {
   document.querySelector('#currency').value = null;
   CurrencyExchange.getCurrency(currency)
     .then(function(response) {
-      console.log(response)
       const resp = response;
       let rate = resp.conversion_rates.USD;
       let usd = document.querySelector('#userNumber1').value;
@@ -34,9 +33,11 @@ function handleAnySubmission(event) {
   .then(function(response) {
     console.log(response)
     const resp = response;
-    let rate = resp.conversion_rates[currency]
+    let changeRate = document.querySelector('#currencyChange').value;
+    let rate = resp.conversion_rates[changeRate]
     console.log(rate);
-    document.querySelector('#conversion2').innerText =  "The currency converted from USD to " + currency + " is " + convert(currency,rate);
+    let anyCurr = document.querySelector('#userNumber2').value;
+    document.querySelector('#conversion2').innerText =  "The currency converted from" + currency + " to " + changeRate + " is " + backConvert(anyCurr,rate);
   });
 
 }

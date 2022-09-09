@@ -19,3 +19,7 @@ export class CurrencyExchange {
 export function convert(usd, rate) {
   return usd/rate;
 }
+
+export function backConvert(curr, rate) {
+  return curr * rate;
+}
