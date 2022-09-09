@@ -2,3 +2,13 @@ body {
   background-color: lightblue;
   text-align: center;
 }
+
+#right {
+  width: 30%;
+  background-color: red;
+}
+
+#left {
+  width: 30%;
+  background-color: blue;
+}
