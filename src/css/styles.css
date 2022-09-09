@@ -4,11 +4,32 @@ body {
 }
 
 #right {
-  width: 30%;
+  width: 300px;
   background-color: red;
+  float: right;
 }
 
 #left {
-  width: 30%;
+  width: 300px;
   background-color: blue;
+  float: left;
+}
+
+#main {
+  padding: 200px;
+
+}
+
+#change2 {
+  background: #CE5937;
+  background: -moz-linear-gradient(left, #CE5937 0%, #1C6EA4 50%, #C59237 100%);
+  background: -webkit-linear-gradient(left, #CE5937 0%, #1C6EA4 50%, #C59237 100%);
+  background: linear-gradient(to right, #CE5937 0%, #1C6EA4 50%, #C59237 100%);
+}
+
+#change {
+  background: #CE5937;
+  background: -moz-linear-gradient(left, #CE5937 0%, #1C6EA4 50%, #C59237 100%);
+  background: -webkit-linear-gradient(left, #CE5937 0%, #1C6EA4 50%, #C59237 100%);
+  background: linear-gradient(to right, #CE5937 0%, #1C6EA4 50%, #C59237 100%);
 }
