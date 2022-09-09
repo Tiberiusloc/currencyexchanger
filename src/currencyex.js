@@ -1,4 +1,4 @@
-export default class CurrencyExchange {  
+export class CurrencyExchange {  
   static getCurrency(currency) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
@@ -15,4 +15,8 @@ export default class CurrencyExchange {
       request.send();
     });
   }
+}
+
+export function convert(usd, rate) {
+  return usd/rate;
 }

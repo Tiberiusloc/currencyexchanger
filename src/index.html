@@ -8,8 +8,10 @@
     <p>Money go change</p>
   </div>
   <form>
-    <label for="currency">Enter in a value in USD</label>
-    <input id="currency" type="text" name="currency">
+    <select id="currency">
+      <option id="usd" value="usd">USD</option>
+      <option id="euro">euro</option>
+    </select>
     <button type="submit" class="btn-success" id="change">Exchange</button>
   </form>
   <p id="showResponse"></p>

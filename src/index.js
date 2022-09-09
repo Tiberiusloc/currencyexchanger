@@ -1,7 +1,7 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import CurrencyExchange from './currencyex';
+import { CurrencyExchange, convert} from './currencyex';
 
 // Business Logic
 
@@ -20,19 +20,31 @@ function getCurrency(currency) {
 
 function printElements(currency) {
   console.log(currency);
-  document.querySelector('#showResponse').innerText = `This currency is ${currency[0].conversion_rates.USD}`;
+  document.querySelector('#showResponse').innerText = `This currency is ${currency[0].conversion_rates.USD} in US $
+  This currency is ${currency[0].conversion_rates.KWD} in Kuwaiti $
+  This currency is ${currency[0].conversion_rates.BHD} in Bahrain $
+  This currency is ${currency[0].conversion_rates.GBP} in Pound $
+  This currency is ${currency[0].conversion_rates.EUR} in Euro $
+  This currency is ${currency[0].conversion_rates.CAD} in Canadian $`;
 }
 
 function printError(error) {
   console.log(error);
-  document.querySelector('#showResponse').innerText = `There was an error accessing the currency data for ${error}`;
+  document.querySelector('#showResponse').innerText = `There was an error accessing the currency data for ${error[2]} ${error[0].status} ${error[0].statusText}: ${error[1].message}`;
 }
 
 function handleFormSubmission(event) {
   event.preventDefault();
   const currency = document.querySelector('#currency').value;
   document.querySelector('#currency').value = null;
-  getCurrency(currency);
+  getCurrency(currency)
+  .then(function(response) {
+    const resp = response;
+    let rate = resp.conversion_rates.USD;
+    let usd = document.querySelector('#userNumber1').value;
+    document.querySelector('#conversion1').innerText = convert(usd,rate);
+  });
+
 }
 
 window.addEventListener("load", function(){
