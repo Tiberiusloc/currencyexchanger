@@ -1,4 +1,4 @@
-# (Application Name)
+# Currency Exchanger
 
 #### (Brief Description of Application)
 
@@ -9,7 +9,10 @@
 * _HTML_
 * _Javascript_
 * _CSS_
-* _Add_
+* _Webpack_
+*_Jest_
+*_Npm_
+*_ESLint_
 
 ## Description
 
