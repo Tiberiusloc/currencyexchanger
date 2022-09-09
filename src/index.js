@@ -5,14 +5,7 @@ import { CurrencyExchange, convert} from './currencyex';
 
 // Business Logic
 
-function getCurrency(currency) {
-  let promise = CurrencyExchange.getCurrency(currency);
-  promise.then(function(currency) {
-    printElements(currency);
-  }, function(currency) {
-    printError(currency);
-  });
-}
+
 
 
 
@@ -41,7 +34,7 @@ function handleFormSubmission(event) {
     .then(function(response) {
       console.log(response)
       const resp = response;
-      let rate = resp[0].conversion_rates.USD;
+      let rate = resp.conversion_rates.USD;
       let usd = document.querySelector('#userNumber1').value;
       document.querySelector('#conversion1').innerText = convert(usd,rate);
     });

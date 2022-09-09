@@ -1,19 +1,18 @@
 export class CurrencyExchange {  
   static getCurrency(currency) {
-    return new Promise(function(resolve, reject) {
-      let request = new XMLHttpRequest();
-      const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${currency}`;
-      request.addEventListener("loadend", function() {
-        const response = JSON.parse(this.responseText);
-        if (this.status === 200) {
-          resolve([response, currency]);
-        } else {
-          reject([response, currency]);
+    return fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/${currency}`)
+      .then(function(response) {
+        if(response.status === 404) {
+          throw Error("PLEASE ENTER A VALID CURRENCY");
+        } else 
+        if(!response.ok){
+          throw Error(response.status);
         }
+        return response.json();
+      })
+      .catch(function(error) {
+        document.getElementById('errors').innerText = error;
       });
-      request.open("GET", url, true);
-      request.send();
-    });
   }
 }
 
