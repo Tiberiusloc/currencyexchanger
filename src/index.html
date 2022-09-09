@@ -5,23 +5,29 @@
 <body>
   <div class="container">
     <h1>Currency Exchanger</h1>
-    <p>USD => Currency of choice, money will return in that countries Currency</p>
-  </div>
-  <form>
-    <select id="currency">
-      <option id="usd" value="usd">USD</option>
-      <option id="euro" value="eur">EUR</option>
-      <option id="canada" value="CAD">CAD</option>
-      <option id="greatbrit" value="GBP">GBP</option>
-      <option id="error" value="err">error</option>
-    </select>
-    <p>$
+    <p>This will convert US dollars to a currency of your choice. Here are examples of how to specify the currency of choice:</p>
+    <pre>
+      USD
+      GBP
+      EUR
+    </pre>
+    <form id="form">
+      <label for="currency">USD to:</label>
+      <input for="currency" id="currency" type="text">
+      <br>
+      <label for="amout" id="amout" type="number">Amount(USD):</label>
       <input type="number" id="userNumber1">
-    </p>
-    <p id="conversion1"></p>
-    <button type="submit" class="btn-success" id="change">Exchange</button>
-  </form>
-  <p id="showResponse"></p>
-  <p id="errors"></p>
-
+      <p><span id="conversion1"></span></p>
+      <button type="submit" class="btn-success" id="change">Exchange</button>
+    </form>
+    <p id="errors"></p>
+    <form id="form2">
+      <label for="currency2">ANY to:</label>
+      <input for="currency2" id="currency2" type="text">
+      <br>
+      <label for="amout2" id="amout2" type="number">ANY:</label>
+      <input type="number" id="userNumber2">
+      <p><span id="conversion2"></span></p>
+      <button type="submit" class="btn-success" id="change2">Exchange</button>
+    </form>
 </html>

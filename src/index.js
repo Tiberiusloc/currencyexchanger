@@ -11,20 +11,6 @@ import { CurrencyExchange, convert} from './currencyex';
 
 // UI Logic
 
-function printElements(currency) {
-  console.log(currency);
-  document.querySelector('#showResponse').innerText = `This currency is ${currency[0].conversion_rates.USD} in US $
-  This currency is ${currency[0].conversion_rates.KWD} in Kuwaiti $
-  This currency is ${currency[0].conversion_rates.BHD} in Bahrain $
-  This currency is ${currency[0].conversion_rates.GBP} in Pound $
-  This currency is ${currency[0].conversion_rates.EUR} in Euro $
-  This currency is ${currency[0].conversion_rates.CAD} in Canadian $`;
-}
-
-function printError(error) {
-  console.log(error);
-  document.querySelector('#showResponse').innerText = `There was an error accessing the currency data for ${error[2]} ${error[0].status} ${error[0].statusText}: ${error[1].message}`;
-}
 
 function handleFormSubmission(event) {
   event.preventDefault();
@@ -36,10 +22,26 @@ function handleFormSubmission(event) {
       const resp = response;
       let rate = resp.conversion_rates.USD;
       let usd = document.querySelector('#userNumber1').value;
-      document.querySelector('#conversion1').innerText = convert(usd,rate);
+      document.querySelector('#conversion1').innerText =  "The currency converted from USD to " + currency + " is " + convert(usd,rate);
     });
 }
 
+function handleAnySubmission(event) {
+  event.preventDefault();
+  const currency = document.querySelector('#currency2').value;
+  document.querySelector('#currency2').value = null;
+  CurrencyExchange.getCurrency(currency)
+  .then(function(response) {
+    console.log(response)
+    const resp = response;
+    let rate = resp.conversion_rates[currency]
+    console.log(rate);
+    document.querySelector('#conversion2').innerText =  "The currency converted from USD to " + currency + " is " + convert(currency,rate);
+  });
+
+}
+
 window.addEventListener("load", function(){
-  this.document.querySelector('form').addEventListener('submit', handleFormSubmission);
+  document.querySelector('form').addEventListener('submit', handleFormSubmission);
+  document.querySelector('#form2').addEventListener('submit', handleAnySubmission);
 });
