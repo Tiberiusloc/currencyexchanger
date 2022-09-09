@@ -1,7 +1,7 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import { CurrencyExchange } from './currencyex';
+import CurrencyExchange from './currencyex';
 
 // Business Logic
 
@@ -9,8 +9,8 @@ function getCurrency(currency) {
   let promise = CurrencyExchange.getCurrency(currency);
   promise.then(function(currency) {
     printElements(currency);
-  }, function(nomoney) {
-    printError(nomoney);
+  }, function(currency) {
+    printError(currency);
   });
 }
 
@@ -19,10 +19,12 @@ function getCurrency(currency) {
 // UI Logic
 
 function printElements(currency) {
-  document.querySelector('#showResponse').innerText = `This currency is ${currency}`
+  console.log(currency);
+  document.querySelector('#showResponse').innerText = `This currency is ${currency[0].conversion_rates.USD}`;
 }
 
 function printError(error) {
+  console.log(error);
   document.querySelector('#showResponse').innerText = `There was an error accessing the currency data for ${error}`;
 }
 
@@ -35,4 +37,4 @@ function handleFormSubmission(event) {
 
 window.addEventListener("load", function(){
   this.document.querySelector('form').addEventListener('submit', handleFormSubmission);
-})
+});
