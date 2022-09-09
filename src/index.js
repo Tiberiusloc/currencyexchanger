@@ -37,14 +37,14 @@ function handleFormSubmission(event) {
   event.preventDefault();
   const currency = document.querySelector('#currency').value;
   document.querySelector('#currency').value = null;
-  getCurrency(currency)
-  .then(function(response) {
-    const resp = response;
-    let rate = resp.conversion_rates.USD;
-    let usd = document.querySelector('#userNumber1').value;
-    document.querySelector('#conversion1').innerText = convert(usd,rate);
-  });
-
+  CurrencyExchange.getCurrency(currency)
+    .then(function(response) {
+      console.log(response)
+      const resp = response;
+      let rate = resp[0].conversion_rates.USD;
+      let usd = document.querySelector('#userNumber1').value;
+      document.querySelector('#conversion1').innerText = convert(usd,rate);
+    });
 }
 
 window.addEventListener("load", function(){
