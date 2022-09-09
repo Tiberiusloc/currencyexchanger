@@ -5,14 +5,15 @@ import { CurrencyExchange } from './currencyex';
 
 // Business Logic
 
-async function getCurrency(currency) {
-  const response = await CurrencyExchange.getCurrency(currency);
-  if (response.main) {
-    printElements(currency)
-  } else {
-    printError(currency)
-  }
+function getCurrency(currency) {
+  let promise = CurrencyExchange.getCurrency(currency);
+  promise.then(function(currency) {
+    printElements(currency);
+  }, function(nomoney) {
+    printError(nomoney);
+  });
 }
+
 
 
 // UI Logic
@@ -21,8 +22,8 @@ function printElements(currency) {
   document.querySelector('#showResponse').innerText = `This currency is ${currency}`
 }
 
-function printError(currency, error) {
-  document.querySelector('#showResponse').innerText = `There was an error accessing the currency data for ${currency}:${error}`;
+function printError(error) {
+  document.querySelector('#showResponse').innerText = `There was an error accessing the currency data for ${error}`;
 }
 
 function handleFormSubmission(event) {
